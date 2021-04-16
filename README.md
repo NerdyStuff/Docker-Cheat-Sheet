@@ -63,7 +63,10 @@ More flags see: [Docker-Docs](https://docs.docker.com/engine/reference/commandli
 `docker network ls`
 
 ### IPs of all Containers
-`docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'`
+1) `docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'`<br>
+2) `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id`
+
+See: [Stackoverflow](https://stackoverflow.com/questions/17157721/how-to-get-a-docker-containers-ip-address-from-the-host)
 
 ### Create a network
 `docker network create --driver bridge --subnet <subnet e.g. 172.22.5.0/24> <network-name>`
